@@ -33,7 +33,7 @@ pipeline {
             steps{
                 sh "kubectl config use-context gke_trial-velostrata_asia-southeast1_test"
                 sh "sed -i 's/hello:latest/cuaca:${env.BUILD_ID}/g' deployment.yaml"
-                sh "kubectl apply -f /var/lib/jenkins/workspace/hello/deployment.yaml"
+                sh "kubectl apply -f /var/lib/jenkins/workspace/cuaca/deployment.yaml"
             }
         }
     }    
