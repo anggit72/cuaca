@@ -15,7 +15,7 @@ pipeline {
         stage("Build image") {
             steps {
                 script {
-                    myapp = docker.build("anggit/hello:${env.BUILD_ID}")
+                    myapp = docker.build("anggit/cuaca:${env.BUILD_ID}")
                 }
             }
         }
