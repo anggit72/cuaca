@@ -1,38 +1,38 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-name: hello
+name: cuaca
 labels:
-  app: hello
+  app: cuaca
 spec:
 strategy:
   type: Recreate
 template:
   metadata:
     labels:
-      app: hello
-      tier: hello
+      app: cuaca
+      tier: cuaca
   spec:
     containers:
-    - name: hello
-      image: anggit/hello:latest
+    - name: cuaca
+      image: anggit/cuaca:latest
       imagePullPolicy: Always
       ports:
       - containerPort: 5000
-        name: hello
+        name: cuaca
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
-name: hello
+name: cuaca
 labels:
-  app: hello
+  app: cuaca
 spec:
 ports:
   - port: 5000
     targetPort: 5000
 selector:
-  app: hello
-  tier: hello
+  app: cuaca
+  tier: cuaca
 type: LoadBalancer
