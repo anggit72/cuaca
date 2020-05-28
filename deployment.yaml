@@ -1,38 +1,33 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-name: cuaca
-labels:
-  app: cuaca
+  name: cuaca-app
 spec:
-strategy:
-  type: Recreate
-template:
-  metadata:
-    labels:
+  selector:
+    matchLabels:
       app: cuaca
-      tier: cuaca
-  spec:
-    containers:
-    - name: cuaca
-      image: anggit/cuaca:latest
-      imagePullPolicy: Always
-      ports:
-      - containerPort: 5000
-        name: cuaca
-
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: cuaca
+    spec:
+      containers:
+      - name: cuaca
+        image: "anggit/cuaca:latest"
+        
 ---
+
 apiVersion: v1
 kind: Service
 metadata:
-name: cuaca
-labels:
-  app: cuaca
+  name: cuaca-service
+  labels:
+    app: cuaca
 spec:
-ports:
-  - port: 5000
-    targetPort: 5000
-selector:
-  app: cuaca
-  tier: cuaca
-type: LoadBalancer
+  type: LoadBalancer
+  selector:
+    app: cuaca
+  ports:
+  - port: 8080
+    protocol: TCP
